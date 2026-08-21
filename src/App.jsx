@@ -8,6 +8,7 @@ import Admin from "./components/pages/Admin";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import NotFound from "./components/pages/NotFound";
+import Nosotros from "./components/Nosotros/Nosotros";
 
 function App() {
   const usuarioSession = JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
@@ -43,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
