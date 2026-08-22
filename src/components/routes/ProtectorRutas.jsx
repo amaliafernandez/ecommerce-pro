@@ -5,7 +5,7 @@ function ProtectorRutas() {
   const { usuarioLogueado } = useAppContext();
 
   if (!usuarioLogueado) {
-    return <Navigate to="login" replace />;
+    return <Navigate to="/login" replace />;
   }
   return <Outlet />;
 }
