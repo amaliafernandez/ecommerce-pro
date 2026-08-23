@@ -9,6 +9,7 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import NotFound from "./components/pages/NotFound";
 import Nosotros from "./components/nosotros/Nosotros";
+import ProductForm from "./components/pages/ProductForm";
 
 function App() {
   const usuarioSession = JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
@@ -37,6 +38,14 @@ function App() {
           {/* Ruta /about: la agrega Amalia con su About.jsx */}
           <Route path="/admin" element={<ProtectorRutas />}>
             <Route index element={<Admin />} />
+            <Route
+                  path="crear"
+                  element={<ProductForm titulo="Crear servicio" />}
+                ></Route>
+                <Route
+                  path="editar/:id"
+                  element={<ProductForm titulo="Editar servicio" />}
+            ></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
