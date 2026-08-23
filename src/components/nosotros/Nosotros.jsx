@@ -23,8 +23,8 @@ function Nosotros() {
             <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 {TeamData.map((miembro) => (
                     <div
-                        className="bg-card border border-line rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center hover:border-accent transition-colors duration-300">
                         key={miembro.nombre}
+                        className="bg-card border border-line rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center hover:border-accent transition-colors duration-300">
 
 
                         <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-accent flex items-center justify-center mb-4 sm:mb-5 shrink-0">
