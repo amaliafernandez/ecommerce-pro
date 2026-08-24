@@ -10,9 +10,11 @@ import Register from "./components/pages/Register";
 import NotFound from "./components/pages/NotFound";
 import Layout from "./components/shared/Layout";
 import Nosotros from "./components/nosotros/Nosotros";
+import ProductForm from "./components/pages/ProductForm";
 
 function App() {
-  const usuarioSession = JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
+  const usuarioSession =
+    JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSession);
 
   const productosLocal = JSON.parse(localStorage.getItem("productosKey")) || [];
@@ -27,7 +29,9 @@ function App() {
   }, [productos]);
 
   return (
-    <AppContext.Provider value={{ usuarioLogueado, setUsuarioLogueado, productos, setProductos }}>
+    <AppContext.Provider
+      value={{ usuarioLogueado, setUsuarioLogueado, productos, setProductos }}
+    >
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
@@ -38,6 +42,14 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/admin" element={<ProtectorRutas />}>
               <Route index element={<Admin />} />
+              <Route
+                  path="crear"
+                  element={<ProductForm titulo="Crear Producto" />}
+                ></Route>
+                <Route
+                  path="editar/:id"
+                  element={<ProductForm titulo="Editar Producto" />}
+                ></Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
