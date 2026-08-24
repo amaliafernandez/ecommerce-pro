@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import { FiEye, FiEyeOff, FiCheckCircle, FiAlertCircle, FiZap } from "react-icons/fi";
 
@@ -148,7 +148,10 @@ function Register() {
         </form>
 
         <p className="text-sm text-muted text-center mt-6">
-          ¿Ya tenés cuenta? <span className="text-accent cursor-pointer hover:underline">Ingresar</span>
+          ¿Ya tenés cuenta?{" "}
+          <Link to="/login" className="text-accent hover:underline">
+            Ingresar
+          </Link>
         </p>
       </div>
     </section>
