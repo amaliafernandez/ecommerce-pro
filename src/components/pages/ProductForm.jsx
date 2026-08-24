@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useAppContext } from "../../context/AppContext";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import Swal from "sweetalert2";
 
 const ProductForm = ({ titulo }) => {
   const {
@@ -9,10 +12,71 @@ const ProductForm = ({ titulo }) => {
     setValue,
   } = useForm();
 
+  const { id } = useParams();
+  const navegacion = useNavigate();
+
   const { productos, setProductos } = useAppContext();
 
-  const crearProducto = (itemProducto) => {
-    console.log(itemProducto);
+  useEffect(() => {
+    if (titulo.includes("Editar")) {
+      const productoBuscado = buscarProducto(id);
+      //dibuja en el formulario cada valor
+      setValue("nombreProducto", productoBuscado.nombreProducto);
+      setValue("precio", productoBuscado.precio);
+      setValue("imagen", productoBuscado.imagen);
+      setValue("categoria", productoBuscado.categoria);
+      setValue("descripcion", productoBuscado.descripcion);
+      setValue("stock", productoBuscado.stock);
+    }
+  }, []);
+
+  const onSubmit = (data, e) => {
+    console.log(data);
+    if (titulo.includes("Crear")) {
+      crearProducto(data);
+      Swal.fire({
+        title: "Producto creado",
+        text: `El Producto '${data.nombreProducto}' fue creado correctamente`,
+        icon: "success",
+        background: "#18181b",
+        color: "#f4f4f5",
+        confirmButtonColor: "#3b82f6",
+      });
+      e.target.reset();
+    } else {
+      editarProducto(id, data);
+      Swal.fire({
+        title: "Producto editado",
+        text: `El Producto '${data.nombreProducto}' fue editado correctamente`,
+        icon: "success",
+        background: "#18181b",
+        color: "#f4f4f5",
+        confirmButtonColor: "#3b82f6",
+      });
+      navegacion("/admin");
+    }
+  };
+
+  const crearProducto = (dataProducto) => {
+    const productoNuevo = {
+      ...dataProducto,
+      id: crypto.randomUUID(),
+    };
+    setProductos([...productos, productoNuevo]);
+  };
+
+  const editarProducto = (idProducto, productoEditar) => {
+    const productosEditados = productos.map((itemProducto) => {
+      if (itemProducto.id === idProducto) {
+        return { ...itemProducto, ...productoEditar };
+      }
+      return itemProducto;
+    });
+    setProductos(productosEditados);
+  };
+
+  const buscarProducto = (idProducto) => {
+    return productos.find((item) => item.id === idProducto);
   };
 
   const inputClass = (hasError) => `
@@ -25,10 +89,10 @@ const ProductForm = ({ titulo }) => {
     <section className="max-w-4xl mx-auto animate-fadeIn">
       <div className="bg-card p-8 rounded-2xl border border-line shadow-xl">
         <h1 className="text-3xl font-bold text-accent mb-8 border-b border-line pb-4">
-          Crear Producto
+          {titulo}
         </h1>
 
-        <form className="space-y-6" onSubmit={handleSubmit(crearProducto)}>
+        <form className="space-y-6" onSubmit={handleSubmit((data, e) => onSubmit(data, e))}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Nombre del Producto */}
             <div className="md:col-span-2">

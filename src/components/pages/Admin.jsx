@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import { useAppContext } from "../../context/AppContext";
+import ItemTabla from "../services/ItemTabla";
 
 const Admin = () => {
 const { productos } = useAppContext();
-   
+
   return (
     <section className="animate-fadeIn space-y-6">
       {/* Header de la sección */}
@@ -16,7 +17,7 @@ const { productos } = useAppContext();
             Gestiona el catálogo de productos disponibles.
           </p>
         </div>
-        <Link to={'/administrador/crear'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
+        <Link to={'/admin/crear'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
           Crear Producto
         </Link>
       </div>
@@ -47,14 +48,25 @@ const { productos } = useAppContext();
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800/50">
-            <tr>
-              <td
-                colSpan={4}
-                className="px-6 py-12 text-center text-text italic"
-              >
-                No hay servicios registrados para administrar.
-              </td>
-            </tr>
+          {/* condicion ? si se cumple hago esto : si no se cumple la condicion */}
+            {productos.length > 0 ? (
+              productos.map((producto, indice) => (
+                <ItemTabla
+                  key={producto.id}
+                  producto={producto}
+                  fila={indice + 1}
+                />
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={4}
+                  className="px-6 py-12 text-center text-zinc-500 italic"
+                >
+                  No hay productos registrados para administrar.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
