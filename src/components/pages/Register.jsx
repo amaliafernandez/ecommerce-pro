@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 import { FiEye, FiEyeOff, FiCheckCircle, FiAlertCircle, FiZap } from "react-icons/fi";
 
 function Register() {
@@ -11,13 +13,51 @@ function Register() {
   } = useForm({ mode: "onChange" });
 
   const [verPassword, setVerPassword] = useState(false);
+  const navegacion = useNavigate();
 
-  // Miramos el email en tiempo real para el mensaje de "Email válido"
   const emailValue = watch("email");
   const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue || "");
 
   const onSubmit = (data) => {
-    console.log(data); // la lógica de guardado va en la Parte 3
+    // Traemos los usuarios ya registrados (o un array vacío si no hay)
+    const usuarios = JSON.parse(localStorage.getItem("usuariosKey")) || [];
+
+    // Verificamos que el email no esté ya registrado
+    const existe = usuarios.some((u) => u.email === data.email);
+    if (existe) {
+      Swal.fire({
+        title: "Email en uso",
+        text: "Ya existe una cuenta con ese email.",
+        icon: "error",
+        background: "#191c22",
+        color: "#e8eaed",
+        confirmButtonColor: "#d55b5b",
+      });
+      return;
+    }
+
+    // Creamos el nuevo usuario con la estructura acordada
+    const nuevoUsuario = {
+      id: crypto.randomUUID(),
+      nombre: data.nombre,
+      email: data.email,
+      password: data.password,
+      rol: "invitado",
+    };
+
+    // Lo agregamos y guardamos en localStorage
+    localStorage.setItem("usuariosKey", JSON.stringify([...usuarios, nuevoUsuario]));
+
+    Swal.fire({
+      title: "¡Cuenta creada!",
+      text: "Ya podés iniciar sesión.",
+      icon: "success",
+      background: "#191c22",
+      color: "#e8eaed",
+      confirmButtonColor: "#7c6cff",
+    });
+
+    navegacion("/login");
   };
 
   const inputBase = "w-full px-4 py-2.5 bg-bg border rounded-lg text-text focus:outline-none focus:border-accent transition-colors";
