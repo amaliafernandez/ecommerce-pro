@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { useAppContext } from "../../context/AppContext";
 
 function Login() {
   const {
@@ -6,9 +9,34 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navegacion = useNavigate();
+  const { setUsuarioLogueado } = useAppContext();
 
   const onSubmit = (data) => {
-    console.log(data); // por ahora solo mostramos los datos; la lógica va en la Parte 3
+    const emailAdmin = import.meta.env.VITE_ADMIN_EMAIL;
+    const passwordAdmin = import.meta.env.VITE_ADMIN_PASSWORD;
+
+    if (data.email === emailAdmin && data.password === passwordAdmin) {
+      setUsuarioLogueado({ nombre: "Administrador", rol: "admin" });
+      Swal.fire({
+        title: "¡Bienvenido!",
+        text: "Ingresaste como administrador.",
+        icon: "success",
+        background: "#191c22",
+        color: "#e8eaed",
+        confirmButtonColor: "#7c6cff",
+      });
+      navegacion("/admin");
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Las credenciales no son correctas.",
+        icon: "error",
+        background: "#191c22",
+        color: "#e8eaed",
+        confirmButtonColor: "#d55b5b",
+      });
+    }
   };
 
   return (
