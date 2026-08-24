@@ -10,7 +10,10 @@ function Footer() {
         {/* Marca + redes */}
         <div>
           <p className="flex items-center gap-2 text-lg font-medium">
-            <FiZap className="text-accent" /> PRO<span className="text-accent">tech</span>
+            <FiZap className="text-accent" />
+            <span>
+              PRO<span className="text-accent">tech</span>
+            </span>
           </p>
           <p className="mt-3 text-sm text-muted max-w-xs leading-relaxed">TECNOLOGÍA PROFESIONAL AL MEJOR PRECIO. ENVÍOS A TODO EL PAÍS.</p>
           <div className="flex gap-3 mt-4">
@@ -24,7 +27,7 @@ function Footer() {
 
         {/* Categorías */}
         <div>
-          <p className="text-xs uppercase tracking-wide text-accent mb-3">CATEGORÍAS</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-4">CATEGORÍAS</p>
           <div className="flex flex-col gap-2">
             <Link to="/" className="text-sm text-muted hover:text-text">
               NOTEBOOKS
@@ -43,7 +46,7 @@ function Footer() {
 
         {/* Ayuda */}
         <div>
-          <p className="text-xs uppercase tracking-wide text-accent mb-3">AYUDA</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-4">AYUDA</p>
           <div className="flex flex-col gap-2">
             <Link to="/" className="text-sm text-muted hover:text-text">
               QUIÉNES SOMOS
@@ -62,7 +65,7 @@ function Footer() {
 
         {/* Medios de pago */}
         <div>
-          <p className="text-xs uppercase tracking-wide text-accent mb-3">MEDIOS DE PAGO</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-4">MEDIOS DE PAGO</p>
           <p className="text-sm text-muted mb-3 leading-relaxed">ACEPTAMOS LAS PRINCIPALES TARJETAS Y MEDIOS DE PAGO.</p>
           <div className="flex gap-3 text-3xl text-muted">
             <FaCcVisa />
