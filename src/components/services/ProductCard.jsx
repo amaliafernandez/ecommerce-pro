@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const ProductCard = ({producto}) => {
   return (
-    <article className="group bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 flex flex-col h-full">
+    <article className="group bg-card rounded-xl overflow-hidden border border-line hover:border-violet-500/50 transition-all duration-300 shadow-lg hover:shadow-violet-500/10 flex flex-col h-full">
       {/* Contenedor de Imagen */}
       <div className="relative h-48 overflow-hidden">
         <img
@@ -11,7 +11,7 @@ const ProductCard = ({producto}) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute top-2 right-2">
-          <span className="bg-zinc-950/80 backdrop-blur-sm text-blue-400 text-xs font-bold px-2 py-1 rounded border border-zinc-700 uppercase tracking-wider">
+          <span className="bg-card backdrop-blur-sm text-success/80 text-xs font-bold px-2 py-1 rounded border border-zinc-700 uppercase tracking-wider">
             {producto.categoria}
           </span>
         </div>
@@ -34,7 +34,7 @@ const ProductCard = ({producto}) => {
 
             <Link
               to={"/detalle-servicio"}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-md shadow-blue-900/20 active:scale-95"
+              className="bg-accent hover:bg-violet-500 text-text px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-md shadow-blue-900/20 active:scale-95"
             >
               Ver detalle
             </Link>
