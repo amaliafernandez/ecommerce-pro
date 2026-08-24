@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router";
 import { FiZap } from "react-icons/fi";
+import { LuUser, LuLogOut } from "react-icons/lu";
 import { useAppContext } from "../../context/AppContext";
 
 function Navbar() {
@@ -7,43 +8,42 @@ function Navbar() {
 
   const categorias = ["Notebooks", "Monitores", "Periféricos", "Audio", "Almacenamiento"];
 
-  const linkStyles = ({ isActive }) => `text-sm transition-colors ${isActive ? "text-accent font-medium" : "text-muted hover:text-text"}`;
-
   return (
     <nav className="bg-bar border-b border-line sticky top-0 z-40">
       <div className="max-w-6xl mx-auto flex items-center gap-6 px-4 py-3">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-1.5 text-lg font-medium shrink-0">
-          <FiZap className="text-accent" />
-          PRO<span className="text-accent">tech</span>
+        <Link to="/" className="flex items-center gap-2 text-2xl font-bold shrink-0">
+          <FiZap className="text-accent text-3xl" />
+          <span>
+            PRO<span className="text-accent">tech</span>
+          </span>
         </Link>
 
         {/* Categorías */}
-        <div className="hidden md:flex items-center gap-5 flex-1">
+        <div className="hidden md:flex items-center gap-1 flex-1">
           {categorias.map((cat) => (
-            <Link key={cat} to="/" className="text-sm text-muted hover:text-text transition-colors">
+            <Link key={cat} to="/" className="text-sm text-muted px-3 py-2 rounded-lg hover:text-text hover:bg-card transition-colors">
               {cat}
             </Link>
           ))}
         </div>
 
-        {/* Accesos + sesión */}
-        <div className="flex items-center gap-5 ml-auto md:ml-0">
-          <NavLink to="/about" className={linkStyles}>
-            Nosotros
-          </NavLink>
-
+        {/* Acceso + sesión */}
+        <div className="flex items-center gap-4 ml-auto md:ml-0">
           {usuarioLogueado ? (
             <>
-              <NavLink to="/admin" className={linkStyles}>
+              <NavLink to="/admin" className="flex flex-col items-center text-xs text-muted hover:text-accent transition-colors">
+                <LuUser className="text-xl" />
                 Admin
               </NavLink>
-              <button onClick={() => setUsuarioLogueado(false)} className="text-sm text-danger hover:opacity-80">
+              <button onClick={() => setUsuarioLogueado(false)} className="flex flex-col items-center text-xs text-muted hover:text-danger transition-colors">
+                <LuLogOut className="text-xl" />
                 Salir
               </button>
             </>
           ) : (
-            <Link to="/login" className="text-sm bg-accent text-bg px-3 py-1.5 rounded-lg font-medium">
+            <Link to="/login" className="flex flex-col items-center text-xs text-muted hover:text-accent transition-colors">
+              <LuUser className="text-xl" />
               Ingresar
             </Link>
           )}
