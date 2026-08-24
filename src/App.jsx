@@ -8,6 +8,7 @@ import Admin from "./components/pages/Admin";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import NotFound from "./components/pages/NotFound";
+import Layout from "./components/shared/Layout";
 
 function App() {
   const usuarioSession = JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
@@ -28,15 +29,17 @@ function App() {
     <AppContext.Provider value={{ usuarioLogueado, setUsuarioLogueado, productos, setProductos }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          {/* Ruta /about: la agrega Amalia con su About.jsx */}
-          <Route path="/admin" element={<ProtectorRutas />}>
-            <Route index element={<Admin />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            {/* Ruta /about: la agrega Amalia con su About.jsx */}
+            <Route path="/admin" element={<ProtectorRutas />}>
+              <Route index element={<Admin />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AppContext.Provider>
