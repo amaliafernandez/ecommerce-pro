@@ -17,6 +17,9 @@ const { productos } = useAppContext();
             Gestiona el catálogo de productos disponibles.
           </p>
         </div>
+        <Link to={'/admin/usuarios'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
+          Ver Usuarios
+        </Link>
         <Link to={'/admin/crear'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
           Crear Producto
         </Link>

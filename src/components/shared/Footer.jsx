@@ -48,7 +48,7 @@ function Footer() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-accent mb-4">AYUDA</p>
           <div className="flex flex-col gap-2">
-            <Link to="/" className="text-sm text-muted hover:text-text">
+            <Link to="/nosotros" className="text-sm text-muted hover:text-text">
               QUIÉNES SOMOS
             </Link>
             <Link to="/NotFound" className="text-sm text-muted hover:text-text">
