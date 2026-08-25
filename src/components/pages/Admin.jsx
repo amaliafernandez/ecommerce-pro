@@ -1,9 +1,31 @@
 import { Link } from "react-router";
 import { useAppContext } from "../../context/AppContext";
 import ItemTabla from "../services/ItemTabla";
+import Swal from "sweetalert2";
 
 const Admin = () => {
-  const { productos } = useAppContext();
+  const { productos, setProductos } = useAppContext();
+
+  const handleEliminar = (id) => {
+    Swal.fire({
+      title: "¿Eliminar producto?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      background: "#191c22",
+      color: "#e8eaed",
+      confirmButtonColor: "#d55b5b",
+      cancelButtonColor: "#3a3d45",
+    }).then((resultado) => {
+      if (resultado.isConfirmed) {
+        const nuevosProductos = productos.filter((p) => p.id !== id);
+        setProductos(nuevosProductos);
+        Swal.fire({ title: "Eliminado", /* ... */ });
+      }
+    });
+  };
 
   return (
     <section className="animate-fadeIn space-y-6">
@@ -17,6 +39,12 @@ const Admin = () => {
             Gestiona el catálogo de productos disponibles.
           </p>
         </div>
+        <Link
+            to={"/admin/usuarios"}
+            className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
+        >
+          Lista de Usuarios
+        </Link>
         <Link
           to={"/admin/crear"}
           className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
@@ -58,6 +86,7 @@ const Admin = () => {
                   key={producto.id}
                   producto={producto}
                   fila={indice + 1}
+                  onEliminar={handleEliminar}
                 />
               ))
             ) : (
