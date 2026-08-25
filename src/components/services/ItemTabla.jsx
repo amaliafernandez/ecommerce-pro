@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 
-const ItemTabla = ({producto, fila}) => {
+const ItemTabla = ({producto, fila, onEliminar}) => {
 
   return (
     <tr className="border-b border-card hover:bg-line/50 transition-colors">
@@ -28,7 +28,13 @@ const ItemTabla = ({producto, fila}) => {
           >
             <i className="bi bi-pencil-square"></i> Editar
           </Link>
-
+            <button
+                type="button"
+                onClick={() => onEliminar(producto.id)}
+                className="text-red-400 hover:text-red-500 transition-colors flex items-center gap-1"
+            >
+                <i className="bi bi-trash"></i> Eliminar
+            </button>
         </div>
       </td>
     </tr>
