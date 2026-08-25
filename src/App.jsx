@@ -57,14 +57,6 @@ function App() {
                   path="usuarios"
                   element={<AdminUsuarios titulo="Lista de Usuarios" />}
               ></Route>
-              <Route
-                  path="usuario/:id"
-                  element={<AdminUsuarios titulo="Visualizar Producto" />}
-              ></Route>
-              <Route
-                  path="crear_usuario"
-                  element={<AdminUsuarios titulo="Crear Usuario" />}
-              ></Route>
 
             </Route>
             <Route path="*" element={<NotFound />} />
