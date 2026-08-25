@@ -11,6 +11,7 @@ import NotFound from "./components/pages/NotFound";
 import Layout from "./components/shared/Layout";
 import Nosotros from "./components/nosotros/Nosotros";
 import ProductForm from "./components/pages/ProductForm";
+import AdminUsuarios from "./components/pages/admin/Admin/Admin_Usuarios";
 
 function App() {
   const usuarioSession =
@@ -43,6 +44,7 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/admin" element={<ProtectorRutas />}>
               <Route index element={<Admin />} />
+
               <Route
                 path="crear"
                 element={<ProductForm titulo="Crear Producto" />}
@@ -51,6 +53,12 @@ function App() {
                 path="editar/:id"
                 element={<ProductForm titulo="Editar Producto" />}
               ></Route>
+
+              <Route
+                  path="usuarios"
+                  element={<AdminUsuarios titulo="Lista de Usuarios" />}
+              ></Route>
+
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>

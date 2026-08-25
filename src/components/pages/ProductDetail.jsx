@@ -1,32 +1,30 @@
 import { useParams } from "react-router";
 import { useAppContext } from "../../context/AppContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function ProductDetail({ productos }) {
-  const { id } = useParams();
+function ProductDetail({producto}) {
+  // const { productos } = useAppContext();
+  // const { id } = useParams();
+  // const { setProducto} = useState()
+  // console.log(id);
 
-  console.log(id);
-  console.log([productos]);
   // const buscarProducto = (idProducto) => {
   //   return productos.find((item) => item.id === idProducto);
   // };
 
-  // const [ producto, setProducto ] = useState("");
-  // setProducto (buscarProducto(id));
-  // console.log(producto)
+  // useEffect(()=>{
+  //   const productoBuscado = buscarProducto(id)
+  //   setProducto(productoBuscado)
+  // }, [])
 
-
-  // setProducto(producto, item);
-  // producto = setProducto
-  //funcion find que busque el datos
-  //crear state y guardarlo
-  // console.log(id);
   return (
     <div className="h-120 w-full flex items-center justify-between box-content self-auto border-4 p-2 rounded-xl overflow-hidden shadow-lg bg-bar border-line flex-col">
       {/* Encabezado */}
       <div className="w-full px-6 py-1 bg-card border-b border-line">
         <h2 className="text-xl font-bold">
-          <span className="text-accent">Producto</span>
+          <span className="text-accent">
+            Producto
+          </span>
         </h2>
       </div>
 
