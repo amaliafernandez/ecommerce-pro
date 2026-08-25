@@ -2,20 +2,11 @@ import { useParams } from "react-router";
 import { useAppContext } from "../../context/AppContext";
 import { useState, useEffect } from "react";
 
-function ProductDetail({producto}) {
-  // const { productos } = useAppContext();
-  // const { id } = useParams();
-  // const { setProducto} = useState()
-  // console.log(id);
-
-  // const buscarProducto = (idProducto) => {
-  //   return productos.find((item) => item.id === idProducto);
-  // };
-
-  // useEffect(()=>{
-  //   const productoBuscado = buscarProducto(id)
-  //   setProducto(productoBuscado)
-  // }, [])
+function ProductDetail() {
+  
+  const { id } = useParams();
+  const { productos } = useAppContext();
+  const producto = productos.find((item) => item.id.toString() === id.toString());
 
   return (
     <div className="h-120 w-full flex items-center justify-between box-content self-auto border-4 p-2 rounded-xl overflow-hidden shadow-lg bg-bar border-line flex-col">
@@ -23,7 +14,7 @@ function ProductDetail({producto}) {
       <div className="w-full px-6 py-1 bg-card border-b border-line">
         <h2 className="text-xl font-bold">
           <span className="text-accent">
-            Producto
+            {producto.nombreProducto}
           </span>
         </h2>
       </div>
@@ -33,7 +24,7 @@ function ProductDetail({producto}) {
         {/* Imagen del producto */}
         <div className="h-90 w-250 bg-card rounded-lg overflow-hidden">
           <img
-            src="https://images.pexels.com/photos/38006272/pexels-photo-38006272.jpeg"
+            src={producto.imagen}
             alt="Imagen de ejemplo"
             className="w-full h-full object-cover"
           />
@@ -41,15 +32,15 @@ function ProductDetail({producto}) {
         <div className="w-full flex flex-col px-6 py-2 gap-3 justify-around">
           {/* Categoría */}
           <span className="text-xs font-semibold uppercase tracking-wider text-accent bg-card px-2.5 py-1 rounded-full self-end">
-            categoria
+            {producto.categoria}
           </span>
 
           {/* Descripción */}
-          <p className="text-sm text-text leading-relaxed">Descripcion</p>
+          <p className="text-sm text-text leading-relaxed">{producto.descripcion}</p>
 
           {/* Precio */}
           <div className="text-2xl font-black text-success mt-1 self-center">
-            $ precio
+            $ {producto.precio}
           </div>
         </div>
       </div>
