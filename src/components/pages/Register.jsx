@@ -4,6 +4,17 @@ import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import { FiEye, FiEyeOff, FiCheckCircle, FiAlertCircle, FiZap } from "react-icons/fi";
 
+function generarIniciales(nombre) {
+  return nombre
+      .trim()
+      .split(" ")
+      .filter(Boolean) // por si hay espacios dobles
+      .map((palabra) => palabra[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+}
+
 function Register() {
   const {
     register,
@@ -20,7 +31,7 @@ function Register() {
 
   const onSubmit = (data) => {
     // Traemos los usuarios ya registrados (o un array vacío si no hay)
-    const usuarios = JSON.parse(localStorage.getItem("usuariosKey")) || [];
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     // Verificamos que el email no esté ya registrado
     const existe = usuarios.some((u) => u.email === data.email);
@@ -39,14 +50,15 @@ function Register() {
     // Creamos el nuevo usuario con la estructura acordada
     const nuevoUsuario = {
       id: crypto.randomUUID(),
+      iniciales: generarIniciales(data.nombre),
       nombre: data.nombre,
       email: data.email,
       password: data.password,
-      rol: "invitado",
+      rol: data.esAdmin ? "Admin" : "Invitado",
     };
 
     // Lo agregamos y guardamos en localStorage
-    localStorage.setItem("usuariosKey", JSON.stringify([...usuarios, nuevoUsuario]));
+    localStorage.setItem("usuarios", JSON.stringify([...usuarios, nuevoUsuario]));
 
     Swal.fire({
       title: "¡Cuenta creada!",
@@ -140,6 +152,18 @@ function Register() {
                 <FiAlertCircle /> {errors.password.message}
               </span>
             )}
+          </div>
+          {/* Rol */}
+          <div className="flex items-center gap-2">
+            <input
+                type="checkbox"
+                id="esAdmin"
+                className="h-4 w-4 rounded border-line accent-accent"
+                {...register("esAdmin")}
+            />
+            <label htmlFor="esAdmin" className="text-sm text-muted cursor-pointer">
+              Crear cuenta como Administrador
+            </label>
           </div>
 
           <button type="submit" className="w-full bg-accent text-bg py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity">
