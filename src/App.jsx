@@ -37,6 +37,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            {/* <Route path="/product" element={<ProductDetail />} /> */}
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -45,13 +46,13 @@ function App() {
               <Route index element={<Admin />} />
 
               <Route
-                  path="crear"
-                  element={<ProductForm titulo="Crear Producto" />}
-                ></Route>
-                <Route
-                  path="editar/:id"
-                  element={<ProductForm titulo="Editar Producto" />}
-                ></Route>
+                path="crear"
+                element={<ProductForm titulo="Crear Producto" />}
+              ></Route>
+              <Route
+                path="editar/:id"
+                element={<ProductForm titulo="Editar Producto" />}
+              ></Route>
 
               <Route
                   path="usuarios"

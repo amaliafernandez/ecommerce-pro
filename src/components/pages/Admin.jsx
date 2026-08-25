@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/AppContext";
 import ItemTabla from "../services/ItemTabla";
 
 const Admin = () => {
-const { productos } = useAppContext();
+  const { productos } = useAppContext();
 
   return (
     <section className="animate-fadeIn space-y-6">
@@ -17,10 +17,10 @@ const { productos } = useAppContext();
             Gestiona el catálogo de productos disponibles.
           </p>
         </div>
-        <Link to={'/admin/usuarios'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
-          Ver Usuarios
-        </Link>
-        <Link to={'/admin/crear'} className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2">
+        <Link
+          to={"/admin/crear"}
+          className="bg-accent hover:bg-violet-500 text-text px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
+        >
           Crear Producto
         </Link>
       </div>
@@ -51,7 +51,7 @@ const { productos } = useAppContext();
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800/50">
-          {/* condicion ? si se cumple hago esto : si no se cumple la condicion */}
+            {/* condicion ? si se cumple hago esto : si no se cumple la condicion */}
             {productos.length > 0 ? (
               productos.map((producto, indice) => (
                 <ItemTabla
@@ -78,4 +78,3 @@ const { productos } = useAppContext();
 };
 
 export default Admin;
-
