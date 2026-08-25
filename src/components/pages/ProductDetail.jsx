@@ -1,48 +1,46 @@
 function ProductDetail() {
   return (
-    <div className="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white border border-gray-100 flex flex-col justify-between">
+    <div className="h-120 w-full flex items-center justify-between box-content self-auto border-4 p-2 rounded-xl overflow-hidden shadow-lg bg-bar border-line flex-col">
       {/* Encabezado */}
-      <div className="px-6 py-4 border-b border-gray-100">
-        <h2 className="text-xl font-bold text-gray-800">Producto</h2>
+      <div className="w-full px-6 py-1 border-b border-muted">
+        <h2 className="text-xl font-bold text-text">Producto</h2>
       </div>
 
       {/* Cuerpo */}
-      <div className="px-6 py-4 flex flex-col gap-3">
+      <div className="w-full flex flex-row px-6 py-2 gap-3">
         {/* Imagen del producto */}
-        <div className="w-full h-48 bg-gray-200 rounded-lg overflow-hidden">
+        <div className="h-90 w-250 bg-card rounded-lg overflow-hidden">
           <img
-            src="https://unsplash.com"
+            src="https://images.pexels.com/photos/38006272/pexels-photo-38006272.jpeg"
             alt="Imagen de ejemplo"
             className="w-full h-full object-cover"
           />
         </div>
+        <div className="w-full flex flex-col px-6 py-2 gap-3 justify-around">
+          {/* Categoría */}
+          <span className="text-xs font-semibold uppercase tracking-wider text-accent bg-card px-2.5 py-1 rounded-full self-end">
+            categoria
+          </span>
 
-        {/* Categoría */}
-        <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full self-start">
-          Tecnología
-        </span>
+          {/* Descripción */}
+          <p className="text-sm text-text leading-relaxed">Descripcion</p>
 
-        {/* Descripción */}
-        <p className="text-sm text-gray-600 leading-relaxed">
-          Este es un reloj inteligente de alta calidad con múltiples funciones
-          para el deporte y la salud.
-        </p>
-
-        {/* Precio */}
-        <div className="text-2xl font-black text-gray-900 mt-1">$149.99</div>
+          {/* Precio */}
+          <div className="text-2xl font-black text-success mt-1 self-center">$ precio</div>
+        </div>
       </div>
 
       {/* Pie */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-end gap-3">
+      <div className="w-full px-6 py-2 bg-card border-t border-line flex items-center justify-end gap-3">
         <button
           type="button"
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
+          className="px-4 py-2 text-sm text-text bg-accent border border-line hover:bg-violet-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
         >
           Aceptar
         </button>
         <button
           type="button"
-          className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
+          className="px-4 py-2 text-sm text-text bg-accent border border-line hover:bg-violet-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
         >
           Comprar
         </button>
