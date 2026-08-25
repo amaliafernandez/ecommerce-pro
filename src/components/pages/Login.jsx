@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router";
+import {useForm} from "react-hook-form";
+import {Link, useNavigate} from "react-router";
 import Swal from "sweetalert2";
-import { useAppContext } from "../../context/AppContext";
-import {useEffect, useState} from "react";
+import {useAppContext} from "../../context/AppContext";
+import {useEffect} from "react";
 
 // Carga inicial de Usuarios
 const usuariosIniciales = [
@@ -55,16 +55,13 @@ function Login() {
   const navegacion = useNavigate();
   const { setUsuarioLogueado } = useAppContext();
 
-  // Inicializo el local Storage
-  const [usuarios, setUsuarios] = useState(() => {
-    const stored = localStorage.getItem("usuarios");
-    return stored ? JSON.parse(stored) : usuariosIniciales;
-  });
-
   // Cargo el LocalStorage:
   useEffect(() => {
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-  }, [usuarios]);
+    const stored = localStorage.getItem("usuarios");
+    if (!stored) {
+      localStorage.setItem("usuarios", JSON.stringify(usuariosIniciales));
+    }
+  }, []);
 
   const onSubmit = (data) => {
     // Aca chequeo contra la lista de usuarios que esta en el storage del browser y chequeo el rol
