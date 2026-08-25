@@ -1,11 +1,33 @@
 import { useAppContext } from "../../context/AppContext";
 import ProductCard from "../services/ProductCard";
+import Carousel from "../shared/Carousel";
 
+const SAMPLE_SLIDES = [
+  {
+    image: "https://images.pexels.com/photos/249535/pexels-photo-249535.jpeg",
+    title: "Notebook HP",
+    description: "Notebook HP - Core I7 - SSD 512",
+  },
+  { 
+    image: "https://images.pexels.com/photos/13162091/pexels-photo-13162091.jpeg",
+    title: "Computadora de escritorio Bangho",
+    description: "Core i5 - SSD - 16GB RAM",
+  },
+  {
+    image: "https://images.pexels.com/photos/210926/pexels-photo-210926.jpeg",
+    title: "Auriculares JBL",
+    description: "Excelencia en sonido",
+  },
+];
 
 const Home = () => {
   const { productos } = useAppContext();
   return (
-    <section className="space-y-8 animate-fadeIn">
+    <section className="space-y-2 animate-fadeIn">
+      <div className="min-h-screen bg-bg flex items-start justify-center p-1">
+        <Carousel slides={SAMPLE_SLIDES} />
+      </div>
+
       <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-line pb-5 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-text tracking-tight">
@@ -15,13 +37,13 @@ const Home = () => {
             Explora nuestras productos de última generación.
           </p>
         </div>
-
       </div>
+      
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {productos.length > 0 ? (
           productos.map((producto) => (
-            <ProductCard key={producto.id} producto={producto}/>
+            <ProductCard key={producto.id} producto={producto} />
           ))
         ) : (
           <>
