@@ -1,6 +1,7 @@
 import { useAppContext } from "../../context/AppContext";
 import ProductCard from "../services/ProductCard";
 
+
 const Home = () => {
   const { productos } = useAppContext();
   return (
@@ -19,9 +20,8 @@ const Home = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {productos.length > 0 ? (
-          productos.map((producto, indice) => (
+          productos.map((producto) => (
             <ProductCard key={producto.id} producto={producto}/>
-            
           ))
         ) : (
           <>

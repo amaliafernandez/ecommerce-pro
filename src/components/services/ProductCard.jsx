@@ -33,10 +33,9 @@ const ProductCard = ({producto}) => {
             </div>
 
             <Link
-              to={"/detalle-servicio"}
+              to={`/product/${producto.id}`}
               className="bg-accent hover:bg-violet-500 text-text px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-md shadow-blue-900/20 active:scale-95"
-            >
-              Ver detalle
+            >Ver detalle
             </Link>
           </div>
         </div>
