@@ -58,7 +58,7 @@ function Login() {
   // Inicializo el local Storage
   const [usuarios, setUsuarios] = useState(() => {
     const stored = localStorage.getItem("usuarios");
-    return stored ? JSON.parse(stored) : [];
+    return stored ? JSON.parse(stored) : usuariosIniciales;
   });
 
   // Cargo el LocalStorage:
