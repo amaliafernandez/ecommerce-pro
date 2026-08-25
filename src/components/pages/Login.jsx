@@ -2,6 +2,49 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router";
 import Swal from "sweetalert2";
 import { useAppContext } from "../../context/AppContext";
+import {useEffect, useState} from "react";
+
+// Carga inicial de Usuarios
+const usuariosIniciales = [
+  {
+    id: crypto.randomUUID(),
+    iniciales: "AF",
+    nombre: "Amalia Fernández",
+    email: "amalia@mail.com",
+    password: "admin123",
+    rol: "Admin",
+  },
+  {
+    id: crypto.randomUUID(),
+    iniciales: "AR",
+    nombre: "Andrea Reyes",
+    email: "andrea@mail.com",
+    rol: "Invitado",
+  },
+  {
+    id: crypto.randomUUID(),
+    iniciales: "SD",
+    nombre: "Stefan Dios",
+    email: "stefan@mail.com",
+    password: "admin123",
+    rol: "Admin",
+  },
+  {
+    id: crypto.randomUUID(),
+    iniciales: "JP",
+    nombre: "Juan Pérez",
+    email: "juanp@mail.com",
+    rol: "Invitado",
+  },
+  {
+    id: crypto.randomUUID(),
+    iniciales: "UP",
+    nombre: "Usuario Protech",
+    email: "usuario@protech.com",
+    password: "Usuario12345",
+    rol: "Admin",
+  },
+];
 
 function Login() {
   const {
@@ -12,11 +55,24 @@ function Login() {
   const navegacion = useNavigate();
   const { setUsuarioLogueado } = useAppContext();
 
-  const onSubmit = (data) => {
-    const emailAdmin = import.meta.env.VITE_ADMIN_EMAIL;
-    const passwordAdmin = import.meta.env.VITE_ADMIN_PASSWORD;
+  // Inicializo el local Storage
+  const [usuarios, setUsuarios] = useState(() => {
+    const stored = localStorage.getItem("usuarios");
+    return stored ? JSON.parse(stored) : [];
+  });
 
-    if (data.email === emailAdmin && data.password === passwordAdmin) {
+  // Cargo el LocalStorage:
+  useEffect(() => {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }, [usuarios]);
+
+  const onSubmit = (data) => {
+    // Aca chequeo contra la lista de usuarios que esta en el storage del browser y chequeo el rol
+
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    const usuario = usuarios.find((u) => u.email === data.email && u.rol === "Admin");
+
+    if (usuario !== undefined && data.password === usuario.password) {
       setUsuarioLogueado({ nombre: "Administrador", rol: "admin" });
       Swal.fire({
         title: "¡Bienvenido!",
