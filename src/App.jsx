@@ -11,7 +11,7 @@ import NotFound from "./components/pages/NotFound";
 import Layout from "./components/shared/Layout";
 import Nosotros from "./components/nosotros/Nosotros";
 import ProductForm from "./components/pages/ProductForm";
-import AdminUsuarios from "./components/pages/admin/Admin/Admin_Usuarios";
+import AdminUsuarios from "./components/pages/Admin_Usuarios.jsx";
 import ProductFilter from "./components/pages/ProductFilter";
 
 function App() {
