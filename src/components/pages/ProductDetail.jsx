@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useAppContext } from "../../context/AppContext";
 import { useState, useEffect } from "react";
 
@@ -47,18 +47,18 @@ function ProductDetail() {
 
       {/* Pie */}
       <div className="w-full px-6 py-2 bg-card border-t border-line flex items-center justify-end gap-3">
-        <button
+        <Link to={"/"} 
           type="button"
           className="px-4 py-2 text-sm text-text bg-accent border border-line hover:bg-violet-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
         >
-          Aceptar
-        </button>
-        <button
+          Volver
+        </Link>
+        <Link to={"*"}
           type="button"
           className="px-4 py-2 text-sm text-text bg-accent border border-line hover:bg-violet-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20 active:scale-95 flex items-center gap-2"
         >
           Comprar
-        </button>
+        </Link>
       </div>
     </div>
   );
