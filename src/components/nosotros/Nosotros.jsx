@@ -27,10 +27,14 @@ function Nosotros() {
                         className="bg-card border border-line rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center hover:border-accent transition-colors duration-300">
 
 
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-accent flex items-center justify-center mb-4 sm:mb-5 shrink-0">
-                            <span className="text-accent font-bold text-lg sm:text-xl">
-                            {miembro.inicial}
-                            </span>
+                        <div className=" overflow-hidden w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-accent flex items-center justify-center mb-4 sm:mb-5 shrink-0">
+
+                            <img
+                                src={miembro.foto}
+                                alt={`Foto de ${miembro.nombre}`}
+                                className="w-full h-full object-cover"
+                            />
+
                         </div>
 
                         <h3 className="font-bold text-base sm:text-lg break-words">
