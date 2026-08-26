@@ -17,10 +17,21 @@ function Footer() {
           </p>
           <p className="mt-3 text-sm text-muted max-w-xs leading-relaxed">TECNOLOGÍA PROFESIONAL AL MEJOR PRECIO. ENVÍOS A TODO EL PAÍS.</p>
           <div className="flex gap-3 mt-4">
-            {[FaInstagram, FaFacebookF, FaXTwitter, FaWhatsapp].map((Icono, i) => (
-              <span key={i} className="flex h-8 w-8 items-center justify-center rounded-lg bg-card border border-line text-muted">
+            {[
+              { Icono: FaInstagram, url: "https://www.instagram.com" },
+              { Icono: FaFacebookF, url: "https://www.facebook.com" },
+              { Icono: FaXTwitter, url: "https://www.x.com" },
+              { Icono: FaWhatsapp, url: "https://www.whatsapp.com" },
+            ].map(({ Icono, url }, i) => (
+              <a
+                key={i}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-card border border-line text-muted hover:text-accent hover:border-accent transition-colors"
+              >
                 <Icono className="text-base" />
-              </span>
+              </a>
             ))}
           </div>
         </div>
