@@ -43,6 +43,7 @@ const ProductForm = ({ titulo }) => {
         confirmButtonColor: "#3b82f6",
       });
       e.target.reset();
+      navegacion("/admin");
     } else {
       editarProducto(id, data);
       Swal.fire({
