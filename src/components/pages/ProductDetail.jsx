@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 import { useAppContext } from "../../context/AppContext";
-import { useState, useEffect } from "react";
+
 
 function ProductDetail() {
   

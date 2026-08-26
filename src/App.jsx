@@ -12,6 +12,7 @@ import Layout from "./components/shared/Layout";
 import Nosotros from "./components/nosotros/Nosotros";
 import ProductForm from "./components/pages/ProductForm";
 import AdminUsuarios from "./components/pages/admin/Admin/Admin_Usuarios";
+import ProductFilter from "./components/pages/ProductFilter";
 
 function App() {
   const usuarioSession =
@@ -37,9 +38,9 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/product" element={<ProductDetail />} /> */}
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/filtro" element={<ProductFilter />} />
             <Route path="/register" element={<Register />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/admin" element={<ProtectorRutas />}>
