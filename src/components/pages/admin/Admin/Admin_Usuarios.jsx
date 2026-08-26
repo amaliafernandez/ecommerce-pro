@@ -7,7 +7,7 @@ function Rol({rol}) {
     const esAdmin = rol === "Admin";
     return (
         <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium border ${
-                esAdmin ? "bg-indigo-950/60 border-indigo-500/40 text-indigo-300" : "bg-white/5 border-white/10 text-slate-300"}`}>
+            esAdmin ? "bg-indigo-950/60 border-indigo-500/40 text-indigo-300" : "bg-white/5 border-white/10 text-slate-300"}`}>
             {rol}
         </span>
     );
@@ -17,7 +17,7 @@ function Button({label, to}) {
     return (
         <NavLink
             to={to}
-            className={({ isActive }) =>
+            className={({isActive}) =>
                 `rounded-xl px-6 py-3 text-base font-medium border transition-colors ${
                     isActive
                         ? "border-indigo-500 text-indigo-400 bg-white/[0.03]"
@@ -40,7 +40,7 @@ function AdminUsuarios() {
     const [busqueda, setBusqueda] = useState("");
 
     const usuariosFiltrados = usuarios.filter((usuario) =>
-        usuario.nombre.toLowerCase().includes(busqueda.toLowerCase())||
+        usuario.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
         usuario.email.toLowerCase().includes(busqueda.toLowerCase())
     );
 
@@ -135,36 +135,44 @@ function AdminUsuarios() {
                         {usuariosFiltrados.map((usuario) => {
                             const esAdmin = usuario.rol === "Admin";
                             return (<li
-                                    key={usuario.id}
-                                    className="grid grid-cols-[2fr_2fr_1fr_0.5fr] items-center gap-4 border-b border-white/5 px-6 py-4 last:border-b-0 hover:bg-white/[0.02] transition-colors"
-                                    >
-                                        <div className="flex items-center gap-3">
+                                key={usuario.id}
+                                className="grid grid-cols-[2fr_2fr_1fr_0.5fr] items-center gap-4 border-b border-white/5 px-6 py-4 last:border-b-0 hover:bg-white/[0.02] transition-colors"
+                            >
+                                <div className="flex items-center gap-3">
                                             <span
                                                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-semibold text-indigo-300">
                                               {usuario.iniciales}
                                             </span>
-                                            <span className="font-medium text-slate-100">
+                                    <span className="font-medium text-slate-100">
                                               {usuario.nombre}
                                             </span>
-                                        </div>
+                                </div>
 
-                                        <span className="text-slate-400">{usuario.email}</span>
+                                <span className="text-slate-400">{usuario.email}</span>
 
-                                        <Rol rol={usuario.rol}/>
+                                <Rol rol={usuario.rol}/>
 
-                                        <div className="flex justify-end">
-                                            <button
-                                                type="button"
-                                                disabled={esAdmin}
-                                                onClick={() => handleEliminar(usuario.id)}
-                                                title={esAdmin ? "Los usuarios Admin no se pueden eliminar" : "Eliminar usuario"}
-                                                className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${esAdmin ? "text-slate-600 cursor-not-allowed" : "text-red-400 hover:bg-red-500/10"}`}>
-                                                {esAdmin ? (<LuLock className="h-4 w-4" strokeWidth={1.8}/>) : (<LuTrash2 className="h-4 w-4" strokeWidth={1.8}/>)}
-                                            </button>
-                                        </div>
-                                    </li>);
+                                <div className="flex justify-end">
+                                    <button
+                                        type="button"
+                                        disabled={esAdmin}
+                                        onClick={() => handleEliminar(usuario.id)}
+                                        title={esAdmin ? "Los usuarios Admin no se pueden eliminar" : "Eliminar usuario"}
+                                        className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${esAdmin ? "text-slate-600 cursor-not-allowed" : "text-red-400 hover:bg-red-500/10"}`}>
+                                        {esAdmin ? (<LuLock className="h-4 w-4" strokeWidth={1.8}/>) : (
+                                            <LuTrash2 className="h-4 w-4" strokeWidth={1.8}/>)}
+                                    </button>
+                                </div>
+                            </li>);
                         })}
                     </ul>
+                </div>
+                <div className="mt-6 flex justify-center">
+                    <NavLink
+                        to="/"
+                        className="rounded-xl border border-indigo-500 bg-white/[0.03] px-6 py-3 text-base font-medium text-indigo-400 transition-colors hover:bg-white/[0.06]">
+                         Inicio
+                    </NavLink>
                 </div>
             </div>
         </div>);
