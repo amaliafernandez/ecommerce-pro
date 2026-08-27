@@ -10,7 +10,7 @@ persiste en el navegador con **LocalStorage** y **SessionStorage**, sin backend.
 
 ## 🌐 Despliegue
 
-🔗 **Demo en vivo:** _[completar con el link del deploy]_
+🔗 **Demo en vivo:** _https://proyectoecommerce-pro.netlify.app/_
 
 ## ✨ Funcionalidades
 
